@@ -1,3 +1,6 @@
+import { config as dotenvConfig } from "dotenv";
+dotenvConfig();
+
 import axios from "axios";
 import fs from "fs/promises";
 
@@ -20,7 +23,7 @@ function generateRandomNumberString(length: number) {
 }
 
 const getAuthorizationKey = async () => {
-  return await fs.readFile("./AuthorizationKey", "utf-8");
+  return process.env.DISCORD_AUTHORIZED;
 };
 
 const init = async () => {
