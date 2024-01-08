@@ -1,0 +1,7 @@
+{
+  "lastSuccessTime": "2024-01-08T10:57:00.000Z",
+  "numberRequestPerMinute": 3,
+  "totalMinute": 2,
+  "timeoutBetweenAttendee": 500,
+  "channel":"https://discord.com/api/v9/channels/971341895844376627/messages"
+}
