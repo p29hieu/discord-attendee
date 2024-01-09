@@ -3,6 +3,7 @@ dotenvConfig();
 
 import axios from "axios";
 import fs from "fs/promises";
+import nodeCron from "node-cron";
 
 import config from "../config.json";
 
@@ -89,7 +90,7 @@ const attendee = async ({
   }
 };
 
-const cron = async () => {
+const handleCron = async () => {
   const lastSuccessTime = new Date(config.lastSuccessTime).getTime();
   const diff = ONE_DAY_MS - (Date.now() - lastSuccessTime);
 
@@ -113,10 +114,9 @@ const cron = async () => {
 
 const main = async () => {
   await init();
-  cron();
-  setInterval(() => {
-    cron();
-  }, ONE_DAY_MS);
+  nodeCron.schedule("0 0 * * *", () => handleCron(), {
+    runOnInit: true,
+  });
 };
 
 main();
